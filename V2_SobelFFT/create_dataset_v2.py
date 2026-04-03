@@ -33,7 +33,7 @@ def process_folder_v2(folder_path, label, csv_writer):
             print(f"Error with file: {filename}: {e}")
             continue
 
-    print(f"Finalizat! Am procesat {count} imagini din acest folder.\n")
+    print(f"Finalised! Processed {count} images from this folder.\n")
 
 
 def main():
@@ -50,7 +50,7 @@ def main():
         process_folder_v2(path_real, 0, writer)  # 0 = REAL
         process_folder_v2(path_fake, 1, writer)  # 1 = FAKE (AI)
 
-    print(f"SUCCES! Fișierul '{output_csv}' este gata pentru antrenarea V2.")
+    print(f"'{output_csv}' file is ready for training V2.")
 
 
 if __name__ == "__main__":
