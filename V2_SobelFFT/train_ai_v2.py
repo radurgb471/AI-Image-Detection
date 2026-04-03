@@ -11,7 +11,7 @@ def train_v2():
     try:
         df = pd.read_csv('date_antrenare_v2.csv')
     except FileNotFoundError:
-        print("Eroare: Nu am găsit 'date_antrenare_v2.csv'. Rulează mai întâi extractorul!")
+        print("Error. Did not find 'date_antrenare_v2.csv'.")
         return
 
     X = df.drop('is_fake', axis=1)
@@ -22,21 +22,20 @@ def train_v2():
     model = RandomForestClassifier(n_estimators=200, random_state=42)
     model.fit(X_train, y_train)
 
-    # 4. Evaluare
     y_pred = model.predict(X_test)
     acc = accuracy_score(y_test, y_pred)
 
-    print(f"\n=== REZULTATE MODEL V2 (CU FFT) ===")
-    print(f"Noua Acuratețe: {acc * 100:.2f}%")
+    print(f"\n Model V2 Results")
+    print(f"New accuracy: {acc * 100:.2f}%")
 
     importances = model.feature_importances_
     features = X.columns
-    print("\nImportanța trăsăturilor:")
+    print("\nFeature Importance:")
     for f, imp in zip(features, importances):
         print(f"- {f}: {imp * 100:.2f}%")
 
     joblib.dump(model, 'detector_ai_v2.pkl')
-    print("\nModelul V2 a fost salvat.")
+    print("\nV2 Model Saved.")
 
 
 if __name__ == "__main__":
